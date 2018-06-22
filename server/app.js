@@ -33,16 +33,18 @@ io.on('connection',(socket) => {
         createdAt:new Date().getTime()
     })
 
-    socket.on('createMessage',(message) => {
+    socket.on('createMessage',(message,callback) => {
         console.log(message);
-
+        
         io.emit('newMessage', {
 
-           email:message.email,
+           from:message.from,
            text:message.text,
             createdAt:new Date().getTime()
             });
-
+          callback('this is from the server');
+           
+         
         //socket.broadcast.emit('newMessage', {
 
           //  email:message.email,
